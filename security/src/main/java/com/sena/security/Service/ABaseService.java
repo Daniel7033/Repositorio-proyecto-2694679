@@ -61,4 +61,16 @@ public abstract class ABaseService <T extends ABaseEntity> implements IBaseServi
         entityUpdate.setUpdatedBy((long)1);
         getRepository().save(entityUpdate);
     }
+
+    @Override
+    public void delete(Long id) throws Exception{
+        Optional<T> op = getRepository().findById(id);
+        if (op.isEmpty()){
+            throw new Exception("Registro no encontrado");
+        }
+        T entityUpdate = op.get();
+        entityUpdate.setDeletedAt(LocalDateTime.now());
+        entityUpdate.setDeletedBy((long) 1);
+        getRepository().save(entityUpdate);
+    }
 }

@@ -2,6 +2,8 @@ package com.sena.security.Entity;
 
 import java.util.Date;
 
+import com.sena.security.Entity.Parameter.City;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,9 +41,9 @@ public class Person extends ABaseEntity{
     @Column(name = "date_of_birth", nullable = false)
     private Date dateOfBitrth;
 
-    // @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    // @JoinColumn(name = "city_id", nullable = false)
-    // private City city;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
 
     public String getTypeDocument() {
         return typeDocument;
@@ -115,12 +117,12 @@ public class Person extends ABaseEntity{
         this.dateOfBitrth = dateOfBitrth;
     }
 
-    // public City getCity() {
-    //     return city;
-    // }
+    public City getCity() {
+        return city;
+    }
 
-    // public void setCity(City city) {
-    //     this.city = city;
-    // }
+    public void setCity(City city) {
+        this.city = city;
+    }
     
 }

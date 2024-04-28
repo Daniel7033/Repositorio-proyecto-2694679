@@ -10,7 +10,7 @@ public class ApiResponseDto<T> {
     }
 
     /* Constructor con parametros*/
-    public ApiResponseDto(Boolean status, T data, String message) {
+    public ApiResponseDto(String message, T data, Boolean status) {
         this.status = status;
         this.data = data;
         this.message = message;
