@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("v1/api/enum")
 public class EnumController {
     @Autowired
-    public IEnumService service;
+    public  IEnumService service;
 
     @GetMapping("/genero")
     public GeneroEnum[] getGenero(){
