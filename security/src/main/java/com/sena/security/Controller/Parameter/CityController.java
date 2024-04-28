@@ -12,7 +12,7 @@ import com.sena.security.IService.Parameter.ICityService;
 @RestController
 @RequestMapping("v1/api/city")
 public class CityController extends ABaseController<City, ICityService> {
-    public CityController(ICityService service, String entityName) {
+    public CityController(ICityService service) {
         super(service, "City");
     }
 }

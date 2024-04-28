@@ -11,7 +11,7 @@ import com.sena.security.IService.IViewService;
 @RestController
 @RequestMapping("v1/api/view")
 public class ViewController extends ABaseController<View, IViewService> {
-    public ViewController(IViewService service, String entityName){
+    public ViewController(IViewService service){
         super(service, "View");
     }
 }

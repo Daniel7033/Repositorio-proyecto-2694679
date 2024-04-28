@@ -12,7 +12,7 @@ import com.sena.security.IService.Parameter.IDepartmentService;
 @RestController
 @RequestMapping("v1/api/department")
 public class DepartmentController extends ABaseController<Department, IDepartmentService>{
-    public DepartmentController (IDepartmentService service, String entityName){
+    public DepartmentController (IDepartmentService service){
         super(service, "Department");
     }
 }

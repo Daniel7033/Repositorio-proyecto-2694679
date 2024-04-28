@@ -11,7 +11,7 @@ import com.sena.security.IService.IUserService;
 @RestController
 @RequestMapping("v1/api/user")
 public class UserController extends ABaseController<User, IUserService>{
-    public UserController(IUserService service, String entityName){
+    public UserController(IUserService service){
         super(service, "User");
     }
 }

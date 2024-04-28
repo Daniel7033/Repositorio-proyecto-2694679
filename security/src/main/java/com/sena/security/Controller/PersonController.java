@@ -12,7 +12,7 @@ import com.sena.security.IService.IPersonService;
 @RequestMapping("v1/api/person")
 public class PersonController extends ABaseController<Person, IPersonService>{
 
-    public PersonController(IPersonService service, String entityName) {
+    public PersonController(IPersonService service) {
         super(service, "Person");
     }
     

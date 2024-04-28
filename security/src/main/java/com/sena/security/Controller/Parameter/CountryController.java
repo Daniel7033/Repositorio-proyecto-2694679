@@ -12,7 +12,7 @@ import com.sena.security.IService.Parameter.ICountryService;
 @RestController
 @RequestMapping("v1/api/country")
 public class CountryController extends ABaseController<Country, ICountryService>{
-    public CountryController (ICountryService service, String entityName){
+    public CountryController (ICountryService service){
         super(service, "Country");
     }
 }

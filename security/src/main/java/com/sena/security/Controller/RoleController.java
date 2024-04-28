@@ -12,7 +12,7 @@ import com.sena.security.IService.IRoleService;
 @RequestMapping("v1/api/role")
 public class RoleController extends ABaseController<Role, IRoleService>{
     
-    public RoleController(IRoleService service, String entityName){
+    public RoleController(IRoleService service){
         super(service, "Role");
     }
 }

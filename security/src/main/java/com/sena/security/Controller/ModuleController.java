@@ -11,7 +11,7 @@ import com.sena.security.IService.IModuleService;
 @RestController
 @RequestMapping("v1/api/module")
 public class ModuleController extends ABaseController<Module, IModuleService>{
-    public ModuleController(IModuleService service, String entityName){
+    public ModuleController(IModuleService service){
         super(service, "Module");
     }
 }
