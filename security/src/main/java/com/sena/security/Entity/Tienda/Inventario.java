@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class Inventario extends ABaseEntity{
     @Column(name = "code", nullable = false)
     private String code;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "inventario_detalle_id", nullable = true)
     private InventarioDetalle inventarioDetalle;
 }

@@ -10,7 +10,7 @@ import com.sena.security.IService.Tienda.IUnidadMedidaService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("v1/api/factura")
+@RequestMapping("v1/api/unidad_medida")
 public class UnidadMedidaController extends ABaseController<UnidadMedida, IUnidadMedidaService>{
 
     public UnidadMedidaController(IUnidadMedidaService service){
