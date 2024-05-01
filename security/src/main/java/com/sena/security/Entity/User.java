@@ -16,10 +16,10 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "user")
 public class User extends ABaseEntity{
-    @Column(name = "username", length = 50, nullable = false)
+    @Column(name = "username", length = 50, nullable = true)
     private String username;
 
-    @Column(name = "password", length = 20, nullable = false)
+    @Column(name = "password", length = 20, nullable = true)
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)    

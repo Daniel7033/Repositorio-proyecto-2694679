@@ -14,8 +14,8 @@ function save() {
         };
         var jsonData = JSON.stringify(data);
         $.ajax({
-            url: '',
-            method: 'GET',
+            url: 'http://localhost:7033/security/v1/api/role',
+            method: 'POST',
             dataType: 'json',
             contentType: 'aplication/json',
             data: jsonData,
@@ -50,7 +50,7 @@ function update() {
         var id = parseInt($('#id').val());
         var jsonData = JSON.stringify(data);
         $.ajax({
-            url: '' + id,
+            url: 'http://localhost:7033/security/v1/api/role/' + id,
             method: 'PUT',
             dataType: 'json',
             contentType: 'aplication/json',
@@ -76,7 +76,7 @@ function update() {
 //Función para buscar datos por "id"
 function findById(id) {
     $.ajax({
-        url: '' + id,
+        url: 'http://localhost:7033/security/v1/api/role/' + id,
         method: 'GET',
         dataType: 'json',
         success: function (data){
@@ -99,7 +99,7 @@ function findById(id) {
 //Función para eliminar datos de manera permanente
 function dropById(id) {
     $.ajax({
-        url: '' + id,
+        url: 'http://localhost:7033/security/v1/api/role/' + id,
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -129,7 +129,7 @@ function clearData() {
 //Función para mostrar los datos en una tabla
 function loadData() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/role',
         method: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -143,9 +143,9 @@ function loadData() {
                     <td>${item.description}</td>
                     <td>${item.module.name}</td>
                     <td>${item.state === true ? '' : ''}</td>
-                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img href='../assets/icon/pencil-square.svg'></button></td>
-                    <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img href='../assets/icon/trash3-fill.svg'></button></td>
-                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img href='../assets/icon/eye-slash-fill.svg'></button></td>
+                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
+                    <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
+                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
                 </tr>`
                 });
             } else {
@@ -167,7 +167,7 @@ function autocomplete() {
 //Autocomplete 
 function loadModule() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/module',
         method: 'GET',
         dataType: 'json',
         success: function (response) {

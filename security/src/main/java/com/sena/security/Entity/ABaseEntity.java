@@ -14,7 +14,7 @@ public abstract class ABaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "state", length = 50, nullable = false)
+    @Column(name = "state", nullable = false)
     private Boolean state;
     
     @Column(name = "created_at", nullable = true)

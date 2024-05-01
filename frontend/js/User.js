@@ -20,8 +20,8 @@ function save() {
         };
         var jsonData = JSON.stringify(data);
         $.ajax({
-            url: '',
-            method: 'GET',
+            url: 'http://localhost:7033/security/v1/api/user',
+            method: 'POST',
             dataType: 'json',
             contentType: 'aplication/json',
             data: jsonData,
@@ -42,8 +42,8 @@ function save() {
 //Función para actualizar datos
 function update() {
     try {
-        var selectedCity = parseInt($("#selected_person").val());
-        if (inNaN(selectedCity) || selectedCity == null) {
+        var selectedPerson = parseInt($("#selected_person").val());
+        if (inNaN(selectedPerson) || selectedPerson == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -62,7 +62,7 @@ function update() {
         var id = parseInt($('#id').val());
         var jsonData = JSON.stringify(data);
         $.ajax({
-            url: '' + id,
+            url: 'http://localhost:7033/security/v1/api/user/' + id,
             method: 'PUT',
             dataType: 'json',
             contentType: 'aplication/json',
@@ -88,14 +88,15 @@ function update() {
 //Función para buscar datos por "id"
 function findById(id) {
     $.ajax({
-        url: '' + id,
+        url: 'http://localhost:7033/security/v1/api/user/' + id,
         method: 'GET',
         dataType: 'json',
         success: function (data){
+            var name = `${data.data.person.firstName} ${data.data.person.lastName}`
             $('#id').val(data.data.id);
             $('#username').val(data.data.username);
             $('#password').val(data.data.password);
-            $('#person').val(data.data.person.firstName);
+            $('#person').val(name);
             $('#role').val(data.data.role.name);
             $('#state').val(data.data.state === true ? 1 : 0);
 
@@ -112,7 +113,7 @@ function findById(id) {
 //Función para eliminar datos de manera permanente
 function dropById(id) {
     $.ajax({
-        url: '' + id,
+        url: 'http://localhost:7033/security/v1/api/user/' + id,
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -143,7 +144,7 @@ function clearData() {
 //Función para mostrar los datos en una tabla
 function loadData() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/user',
         method: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -158,9 +159,9 @@ function loadData() {
                     <td>${item.person.firstName} ${item.person.lastName}</td>
                     <td>${item.role.name}</td>
                     <td>${item.state === true ? '' : ''}</td>
-                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img href='../assets/icon/pencil-square.svg'></button></td>
-                    <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img href='../assets/icon/trash3-fill.svg'></button></td>
-                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img href='../assets/icon/eye-slash-fill.svg'></button></td>
+                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
+                    <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
+                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
                 </tr>`
                 });
             } else {
@@ -182,7 +183,7 @@ function autocomplete() {
 //Autocomplete 
 function loadPerson() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/person',
         method: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -220,7 +221,7 @@ function loadPerson() {
 }
 function loadRole() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/role',
         method: 'GET',
         dataType: 'json',
         success: function (response) {

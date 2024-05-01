@@ -15,13 +15,13 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "module")
 public class Module extends ABaseEntity{
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "route", nullable = false)
+    @Column(name = "route", length = 50, nullable = false)
     private String route;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", length = 10000)
     private String description;
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

@@ -15,10 +15,10 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name = "role")
 public class Role extends ABaseEntity{
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", length = 10000, nullable = false)
     private String description;
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

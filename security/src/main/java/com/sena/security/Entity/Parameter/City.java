@@ -12,10 +12,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "city")
 public class City extends ABaseEntity{
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", length = 50, nullable = true)
     private String code;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
