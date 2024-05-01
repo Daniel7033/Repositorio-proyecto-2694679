@@ -1,11 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Librerias -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Enlaces -->
+    <!-- Script -->
+    <script src='../js/Person.js'></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../asset/css/global.css">
     <title>Person</title>
 </head>
+
 <body>
-    
+
+
+    <!-- Barra de navegación -->
+    <div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand">Navbar</a>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <!-- Divisor -->
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <!-- Formulario para Buscar -->
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <!-- Cabeza del modal -->
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearData()"></button>
+                    </div>
+                    <!-- Cuerpo del modal -->
+                    <div class="modal-body">
+                        <!-- Formulario -->
+                        <form action="row needs-validation" novalidate>
+                            <fieldset>
+                                <div>
+                                    <div>
+                                        <label>Document Person</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" name="typeDocument" id="typeDocument">
+                                                <option selected>Type document</option>
+                                            </select>
+                                            <input type="hidden" id="id" name="id">
+                                            <input type="text" class="form-control" id="document" name="document"
+                                                aria-label="Text input with dropdown button"
+                                                placeholder="Number document">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Firstname and lastname</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="firstName" name="firstName"
+                                                placeholder="First name" aria-label="First name">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                                placeholder="Last name" aria-label="Last name">
+                                        </div>
+                                    </div>
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Date of birth</label>
+                                            <div class="col">
+                                                <input type="date" class="form-control" id="dateOfBirth"
+                                                    name="dateOfBirth">
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="gender" id="gender">
+                                                    <option>Gender</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <div class="input-group mb-3">
+                                        <label class="col-sm-2 col-form-label">Email</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control"
+                                                aria-label="Text input with dropdown button" id="email" name="email"
+                                                placeholder="Email">
+                                            <select class="form-select" name="mail">
+                                                <option selected>@example.com</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="col-sm-2 col-form-label">Phone</label>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="0132456789">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="col-sm-2 col-form-label" for="city">City</label>
+                                        <input type="hidden" id="selected_city" name="selected_city">
+                                        <input type="text" list="city" class="form-control" name="city"
+                                            id="city" placeholder="Neiva...">
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <label class="col-sm-2 col-form-label">Address</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-control" id="address" name="address"></select>
+                                            <input type="number" class="form-control row-sm-2" name="numeral" id="numeral"
+                                                value="" required placeholder="Enter #">
+                                            <input type="text" class="form-control" name="numeral2" id="numeral2"
+                                                value="" required placeholder="Enter #">
+                                            <textarea class="form-control" name="description" id="description"
+                                                value="" required rows="1" placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="col-sm-2 col-form-label">Estado</label>
+                                        <select class="form-select" id="state">
+                                            <option>Opciones</option>
+                                            <option value="1">Activo</option>
+                                            <option value="0">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- Final del formulario -->
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Botones de aciiones -->
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button name="btnArgegar" type="button" class="btn btn-primary" onclick="save()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="tableContainer">
+        <table class="table table-hover">
+            <!-- Cabezera de la tabla -->
+            <thead class="table-dark">
+                <tr>
+                    <th>DOCUMENT</th>
+                    <th>NAME</th>
+                    <th>GENDER</th>
+                    <th>BIRTH</th>
+                    <th>EMAIL</th>
+                    <th>PHONE</th>
+                    <th>ADDRESS</th>
+                    <th>STATE</th>
+                    <th colspan="3" style="text-align: center;">ACTIONS</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla -->
+            <tbody id="resultData" style="align-items: center;">
+            </tbody>
+        </table>
+
+        <!-- Button modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Nuevo
+        </button>
+    </div>
 </body>
+
 </html>
+<script>
+    enums();
+    loadData();
+    autocomplete();
+</script>
