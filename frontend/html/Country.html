@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
     <!-- Script -->
     <script src='../js/Country.js'></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="../asset/css/global.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
     <title>Country</title>
 </head>
 
@@ -54,7 +54,7 @@
 
     <div>
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"  tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -73,11 +73,11 @@
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <input type="hidden" id="id" name="id">
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Country name">
+                                            placeholder="Country name" value="">
                                     </div>
                                     <div class="col-sm-12">
                                         <label class="col-sm-2 col-form-label">Estado</label>
-                                        <select class="form-select" id="state">
+                                        <select class="form-select" id="state" name="state">
                                             <option selected>Opciones</option>
                                             <option value="1">Activo</option>
                                             <option value="0">Inactivo</option>
@@ -91,7 +91,7 @@
                     <div class="modal-footer">
                         <!-- Botones de aciiones -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="save()">Guardar</button>
+                        <button name="btnAgregar" type="button" class="btn btn-primary" onclick="save()">Guardar</button>
                     </div>
                 </div>
             </div>

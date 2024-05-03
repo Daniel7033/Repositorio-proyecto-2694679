@@ -9,68 +9,69 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sena.security.DTO.ApiResponseDto;
 import com.sena.security.Entity.ABaseEntity;
 import com.sena.security.IService.IBaseService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
-public class ABaseController <T extends ABaseEntity, S extends IBaseService<T>> {
+public class ABaseController<T extends ABaseEntity, S extends IBaseService<T>> {
+    
     protected S service;
     protected String entityName;
-    public ABaseController(S service, String entityName) {
+    
+    protected ABaseController(S service, String entityName) {
         this.service = service;
         this.entityName = entityName;
     }
-
+    
     @GetMapping
-    public ResponseEntity<ApiResponseDto<List<T>>> findStateTrue() {
+    public ResponseEntity<ApiResponseDto<List<T>>> findByStateTrue() {
         try {
-            return ResponseEntity.ok(new ApiResponseDto<List<T>>("Datos obtenidos", service.findStateTrue(), true));
+            return ResponseEntity.ok(new ApiResponseDto<List<T>>("Datos obtenidos", service.findByStateTrue(), true));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponseDto<List<T>>(e.getMessage(), null, false));
         }
     }
-
+    
     @GetMapping("{id}")
-    public ResponseEntity<ApiResponseDto<Optional<T>>> show(@PathVariable Long id){
+    public ResponseEntity<ApiResponseDto<Optional<T>>> show(@PathVariable Long id) {
         try {
             Optional<T> entity = service.findById(id);
             return ResponseEntity.ok(new ApiResponseDto<Optional<T>>("Registro encontrado", entity, true));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponseDto<Optional<T>>(e.getMessage(), null, false));
         }
-    } 
-
+    }
+    
     @PostMapping
-    public  ResponseEntity<ApiResponseDto<T>> save(@RequestBody T entity){
+    public ResponseEntity<ApiResponseDto<T>> save(@RequestBody T entity) {
         try {
             return ResponseEntity.ok(new ApiResponseDto<T>("Datos guardados", service.save(entity), true));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponseDto<T>(e.getMessage(), null, false));
         }
     }
-
+    
     @PutMapping("{id}")
     public ResponseEntity<ApiResponseDto<T>> update(@PathVariable Long id, @RequestBody T entity) {
         try {
             service.update(id, entity);
-            return ResponseEntity.ok(new ApiResponseDto<T>("Registro actualizado", null, true));
+            return ResponseEntity.ok(new ApiResponseDto<T>("Datos actualizados", null, true));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponseDto<T>(e.getMessage(), null, false));
         }
     }
-    
+
     @DeleteMapping("{id}")
-    public  ResponseEntity<ApiResponseDto<T>> delete(@PathVariable Long id) {
+    public ResponseEntity<ApiResponseDto<T>> delete(@PathVariable Long id) {
         try {
             service.delete(id);
-            return ResponseEntity.ok(new ApiResponseDto<T>("Registro eliminado de manera permanente", null, true));
-        } catch(Exception e) {
+            return ResponseEntity.ok(new ApiResponseDto<T>("Registro eliminado", null, true));
+        } catch (Exception e) {
             return ResponseEntity.internalServerError().body(new ApiResponseDto<T>(e.getMessage(), null, false));
         }
-    }
+    }  
+    
     
 }
- 

@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import com.sena.security.Entity.ABaseEntity;
 
-public interface IBaseService <T extends ABaseEntity>{
-    
+public interface IBaseService<T extends ABaseEntity> {
+
     List<T> all() throws Exception;
 
-    List<T> findStateTrue() throws Exception;
+    List<T> findByStateTrue() throws Exception;
 
     Optional<T> findById(Long id) throws Exception;
 
@@ -18,5 +18,6 @@ public interface IBaseService <T extends ABaseEntity>{
     void update(Long id, T entity) throws Exception;
 
     void delete(Long id) throws Exception;
-
+    
+    
 }

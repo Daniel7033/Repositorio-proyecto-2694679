@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sena.security.Entity.ABaseEntity;
 
 @Repository
-public interface IBaseRepository <T extends ABaseEntity, ID> extends JpaRepository<T, Long>{
+public interface IBaseRepository<T extends ABaseEntity, ID> extends JpaRepository<T, Long>{
     
 }

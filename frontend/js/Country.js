@@ -3,7 +3,7 @@ function save() {
     try {
         var data = {
             'name': $('#name').val(),
-            'state': parseInt($('#state').val())
+            'state': $('#state').val() == 1 ? true : false
         };
         var jsonData = JSON.stringify(data);
         $.ajax({
@@ -70,7 +70,7 @@ function findById(id) {
             $('#name').val(data.data.name);
             $('#state').val(data.data.state === true ? 1 : 0);
 
-            var btnAgregar = $('button[name="btnAgegar"]');
+            var btnAgregar = $('button[name="btnAgregar"]');
             btnAgregar.text('Actualizar');
             btnAgregar.attr('onclick', 'update()');
         },
@@ -123,10 +123,10 @@ function loadData() {
                     `<tr>
                     <td>${item.code}</td>
                     <td>${item.name}</td>
-                    <td>${item.state === true ? '' : ''}</td>
-                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
+                    <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
+                    <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
-                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
+                    <td><button class="btn btn-secondary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
                 </tr>`
                 });
             } else {

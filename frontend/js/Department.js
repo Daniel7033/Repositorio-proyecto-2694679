@@ -2,7 +2,7 @@
 function save() {
     try {
         var selectedCountry = parseInt($("#selected_country").val());
-        if (inNaN(selectedCountry) || selectedCountry == null) {
+        if (isNaN(selectedCountry) || selectedCountry == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -36,7 +36,7 @@ function save() {
 function update() {
     try {
         var selectedCountry = parseInt($("#selected_country").val());
-        if (inNaN(selectedCountry) || selectedCountry == null) {
+        if (isNaN(selectedCountry) || selectedCountry == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -83,7 +83,7 @@ function findById(id) {
             $('#country').val(data.data.country.name);
             $('#state').val(data.data.state === true ? 1 : 0);
 
-            var btnAgregar = $('button[name="btnAgegar"]');
+            var btnAgregar = $('button[name="btnAgregar"]');
             btnAgregar.text('Actualizar');
             btnAgregar.attr('onclick', 'update()');
         },
@@ -138,10 +138,10 @@ function loadData() {
                     <td>${item.code}</td>
                     <td>${item.name}</td>
                     <td>${item.country.name}</td>
-                    <td>${item.state === true ? '' : ''}</td>
-                    <td><button class="btn btn-warning" data-bs-toggle="modal" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
+                    <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
+                    <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
-                    <td><button class="btn btn-secundary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
+                    <td><button class="btn btn-secondary" onclick='deleteById(${item.id})'><img src='../assets/icon/eye-slash-fill.svg'></button></td>
                 </tr>`
                 });
             } else {
@@ -163,7 +163,7 @@ function autocomplete() {
 //Autocomplete 
 function loadCountry() {
     $.ajax({
-        url: '',
+        url: 'http://localhost:7033/security/v1/api/country',
         method: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -177,10 +177,10 @@ function loadCountry() {
                 $('#country').autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(countrys, request.term);
-                        if (!result.length) {
+                        if (!results.length) {
                             results = [{ label: 'No hay datos', value: null }];
                         }
-                        respose(results);
+                        response(results);
                     },
                     select: function (even, ui) {
                         $('#selected_country').val(ui.item.value);

@@ -16,9 +16,9 @@ public abstract class ABaseEntity {
 
     @Column(name = "state", nullable = false)
     private Boolean state;
-    
+
     @Column(name = "created_at", nullable = true)
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     
     @Column(name = "updated_at", nullable = true)
     private LocalDateTime updatedAt;
@@ -51,12 +51,12 @@ public abstract class ABaseEntity {
         this.state = state;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {

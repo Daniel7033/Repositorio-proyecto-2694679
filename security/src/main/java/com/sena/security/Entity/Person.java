@@ -2,8 +2,6 @@ package com.sena.security.Entity;
 
 import java.util.Date;
 
-import com.sena.security.Entity.Parameter.City;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

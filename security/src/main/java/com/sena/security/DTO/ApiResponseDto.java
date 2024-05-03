@@ -11,9 +11,9 @@ public class ApiResponseDto<T> {
 
     /* Constructor con parametros*/
     public ApiResponseDto(String message, T data, Boolean status) {
-        this.status = status;
-        this.data = data;
         this.message = message;
+        this.data = data;
+        this.status = status;
     }
 
     /* Encapsulamiento Getter y Setter */
