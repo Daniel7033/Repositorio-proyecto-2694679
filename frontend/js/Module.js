@@ -3,7 +3,7 @@ function save() {
     try {
         var data = {
             'name': $('#name').val(),
-            'route': $('#slace').val() + $('#route').val(),
+            'route': $('#route').val(),
             'description': $('#description').val(),
             'state': parseInt($('#state').val())
         };
@@ -12,7 +12,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/module',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -33,7 +33,7 @@ function update() {
     try {
         var data = {
             'name': $('#name').val(),
-            'route': $('#slace').val() + $('#route').val(),
+            'route': $('#route').val(),
             'description': $('#description').val(),
             'state': parseInt($('#state').val())
         };
@@ -43,7 +43,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/module/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");

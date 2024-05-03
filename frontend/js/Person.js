@@ -60,7 +60,7 @@ function loadAddress() {
 function save() {
     try {
         var selectedCity = parseInt($("#selected_city").val());
-        if (inNaN(selectedCity) || selectedCity == null) {
+        if (isNaN(selectedCity) || selectedCity == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -69,7 +69,7 @@ function save() {
             'document': parseInt($('#document').val()),
             'firstName': $('#firstName').val(),
             'lastName': $('#lastName').val(),
-            'dateOfBirth': parseInt($('#dateOfBirth').val()),
+            'dateOfBitrth': ($('#dateOfBitrth').val()),
             'gender': $('#gender').val(),
             'email': $('#email').val() + $('#mail').val(),
             'phone': parseInt($('#phone').val()),
@@ -82,7 +82,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/person',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -111,7 +111,7 @@ function update() {
             'document': parseInt($('#document').val()),
             'firstName': $('#firstName').val(),
             'lastName': $('#lastName').val(),
-            'dateOfBirth': parseInt($('#dateOfBirth').val()),
+            'dateOfBitrth': parseInt($('#dateOfBitrth').val()),
             'gender': $('#gender').val(),
             'email': $('#email').val() + $('#mail').val(),
             'phone': parseInt($('#phone').val()),
@@ -125,7 +125,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/person/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");
@@ -157,7 +157,7 @@ function findById(id) {
             $('#document').val(data.data.document);
             $('#firstName').val(data.data.firstName);
             $('#lastName').val(data.data.lastName);
-            $('#dateOfBirth').val(data.data.dateOfBirth);
+            $('#dateOfBitrth').val(data.data.dateOfBitrth);
             $('#gender').val(data.data.gender);
             $('#email').val(data.data.email);
             $('#phone').val(data.data.phone);
@@ -203,7 +203,7 @@ function clearData() {
     $('#document').val('');
     $('#firstName').val('');
     $('#lastName').val('');
-    $('#dateOfBirth').val('');
+    $('#dateOfBitrth').val('');
     $('#gender').val('');
     $('#email').val('');
     $('#phone').val('');
@@ -228,7 +228,7 @@ function loadData() {
                     <td>${item.typeDocument} - ${item.document}</td>
                     <td>${item.firstName} ${item.lastName}</td>
                     <td>${item.gender}</td>
-                    <td>${item.dateOfBirth}</td>
+                    <td>${item.dateOfBitrth}</td>
                     <td>${item.email}</td>
                     <td>${item.phone}</td>
                     <td>${item.address}. ${item.city.name}</td>
@@ -271,10 +271,10 @@ function loadCity() {
                 $('#city').autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(cities, request.term);
-                        if (!result.length) {
+                        if (!results.length) {
                             results = [{ label: 'No hay datos', value: null }];
                         }
-                        respose(results);
+                        response(results);
                     },
                     select: function (even, ui) {
                         $('#selected_city').val(ui.item.value);

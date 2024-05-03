@@ -2,12 +2,12 @@
 function save() {
     try {
         var selectedPerson = parseInt($("#selected_person").val());
-        if (inNaN(selectedPerson) || selectedPerson == null) {
+        if (isNaN(selectedPerson) || selectedPerson == null) {
             console.error("Error con ciudad.");
             return;
         }
         var selectedRole = parseInt($("#selected_role").val());
-        if (inNaN(selectedRole) || selectedRole == null) {
+        if (isNaN(selectedRole) || selectedRole == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -15,7 +15,7 @@ function save() {
             'username': $('#username').val(),
             'password': $('#password').val(),
             'person': { 'id': selectedPerson },
-            'role': { 'id': selectedRole },
+            'role': [{ 'id': selectedRole }],
             'state': parseInt($('#state').val())
         };
         var jsonData = JSON.stringify(data);
@@ -23,7 +23,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/user',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -43,12 +43,12 @@ function save() {
 function update() {
     try {
         var selectedPerson = parseInt($("#selected_person").val());
-        if (inNaN(selectedPerson) || selectedPerson == null) {
+        if (isNaN(selectedPerson) || selectedPerson == null) {
             console.error("Error con ciudad.");
             return;
         }
         var selectedRole = parseInt($("#selected_role").val());
-        if (inNaN(selectedRole) || selectedRole == null) {
+        if (isNaN(selectedRole) || selectedRole == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -56,7 +56,7 @@ function update() {
             'username': $('#username').val(),
             'password': $('#password').val(),
             'person': { 'id': selectedPerson },
-            'role': { 'id': selectedRole },
+            'role': [{ 'id': selectedRole }],
             'state': parseInt($('#state').val())
         };
         var id = parseInt($('#id').val());
@@ -65,7 +65,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/user/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");
@@ -154,10 +154,9 @@ function loadData() {
                 data.forEach(function (item) {
                     html +=
                         `<tr>
-                    <td>${item.username}</td>
-                    <td>${item.password}</td>
-                    <td>${item.person.firstName} ${item.person.lastName}</td>
-                    <td>${item.role.name}</td>
+                        <td>${item.person.firstName} ${item.person.lastName}</td>
+                    <td>@${item.username}</td>
+                    <td>${item.role.map(role => role.name)}</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
                     <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
@@ -197,10 +196,10 @@ function loadPerson() {
                 $('#person').autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(persons, request.term);
-                        if (!result.length) {
+                        if (!results.length) {
                             results = [{ label: 'No hay datos', value: null }];
                         }
-                        respose(results);
+                        response(results);
                     },
                     select: function (even, ui) {
                         $('#selected_person').val(ui.item.value);
@@ -235,10 +234,10 @@ function loadRole() {
                 $('#role').autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(roles, request.term);
-                        if (!result.length) {
+                        if (!results.length) {
                             results = [{ label: 'No hay datos', value: null }];
                         }
-                        respose(results);
+                        response(results);
                     },
                     select: function (even, ui) {
                         $('#selected_role').val(ui.item.value);

@@ -1,15 +1,9 @@
 //Función para guardar datos
 function save() {
     try {
-        var selectedRole = parseInt($("#selected_module").val());
-        if (inNaN(selectedRole) || selectedRole == null) {
-            console.error("Error con ciudad.");
-            return;
-        }
         var data = {
             'name': $('#name').val(),
             'description': $('#description').val(),
-            'module': { 'id': selectedRole },
             'state': parseInt($('#state').val())
         };
         var jsonData = JSON.stringify(data);
@@ -17,7 +11,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/role',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -36,15 +30,9 @@ function save() {
 //Función para actualizar datos
 function update() {
     try {
-        var selectedRole = parseInt($("#selected_module").val());
-        if (inNaN(selectedRole) || selectedRole == null) {
-            console.error("Error con ciudad.");
-            return;
-        }
         var data = {
             'name': $('#name').val(),
             'description': $('#description').val(),
-            'module': { 'id': selected },
             'state': parseInt($('#state').val())
         };
         var id = parseInt($('#id').val());
@@ -53,7 +41,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/role/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");
@@ -83,7 +71,6 @@ function findById(id) {
             $('#id').val(data.data.id);
             $('#name').val(data.data.name);
             $('#description').val(data.data.description);
-            $('#module').val(data.data.module.name);
             $('#state').val(data.data.state === true ? 1 : 0);
 
             var btnAgregar = $('button[name="btnAgregar"]');
@@ -122,7 +109,6 @@ function deleteById(id) {
 function clearData() {
     $('#name').val('');
     $('#description').val('');
-    $('#module').val('');
     $('#state').val('');
 }
 
@@ -141,7 +127,6 @@ function loadData() {
                     `<tr>
                     <td>${item.name}</td>
                     <td>${item.description}</td>
-                    <td>${item.module.name}</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
                     <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
@@ -152,51 +137,6 @@ function loadData() {
                 console.error('Error.');
             }
             $('#resultData').html(html);
-        },
-        error: function (error) {
-            console.error('Error: ', error);
-        }
-    });
-}
-
-//Función para retornar datos del autocomplete
-function autocomplete() {
-    return loadModule();
-}
-
-//Autocomplete 
-function loadModule() {
-    $.ajax({
-        url: 'http://localhost:7033/security/v1/api/module',
-        method: 'GET',
-        dataType: 'json',
-        success: function (response) {
-            if (response.status && Array.isArray(response.data)) {
-                var modules = response.data.map(function (modul) {
-                    return {
-                        label: modul.name,
-                        value: modul.id
-                    };
-                });
-                $('#module').autocomplete({
-                    source: function (request, response) {
-                        var results = $.ui.autocomplete.filter(modules, request.term);
-                        if (!result.length) {
-                            results = [{ label: 'No hay datos', value: null }];
-                        }
-                        respose(results);
-                    },
-                    select: function (even, ui) {
-                        $('#selected_module').val(ui.item.value);
-                        $('#module').val(ui.item.label);
-                        console.log('ID seleccionado', ui.item.value);
-                        return false;
-                    }
-                });
-            } else {
-                console.error('Error.');
-
-            }
         },
         error: function (error) {
             console.error('Error: ', error);

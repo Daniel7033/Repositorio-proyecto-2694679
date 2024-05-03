@@ -3,7 +3,7 @@ function save() {
     try {
         var data = {
             'name': $('#name').val(),
-            'route': $('#slace').val() + $('#route').val(),
+            'route': $('#route').val(),
             'description': $('#description').val(),
             'state': parseInt($('#state').val())
         };
@@ -12,7 +12,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/view',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -33,7 +33,7 @@ function update() {
     try {
         var data = {
             'name': $('#name').val(),
-            'route': $('#slace').val() + $('#route').val(),
+            'route': $('#route').val(),
             'description': $('#description').val(),
             'state': parseInt($('#state').val())
         };
@@ -43,7 +43,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/view/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");
@@ -130,7 +130,7 @@ function loadData() {
                     html +=
                         `<tr>
                     <td>${item.name}</td>
-                    <td>${item.route}</td>
+                    <td>/${item.route}</td>
                     <td>${item.description}</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
                     <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>

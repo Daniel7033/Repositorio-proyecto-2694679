@@ -66,7 +66,8 @@
                     <!-- Cabeza del modal -->
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearData()"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="clearData()"></button>
                     </div>
                     <!-- Cuerpo del modal -->
                     <div class="modal-body">
@@ -77,21 +78,24 @@
                                     <div class="col-md-12">
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <input type="hidden" id="id" name="id">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="City name">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="City name">
                                     </div>
-                                        <div class="col-sm-9">
-                                            <label class="col-sm-2 col-form-label" for="department">Department</label>
-                                            <input type="hidden" id="selected_department" name="selected_department" value="">
-                                            <input type="text" list="department" class="form-control" name="department" id="department" placeholder="Department name">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <label class="col-sm-2 col-form-label">Estado</label>
-                                            <select class="form-select" id="state">
-                                                <option selected>Opciones</option>
-                                                <option value="1">Activo</option>
-                                                <option value="0">Inactivo</option>
-                                            </select>
-                                        </div>
+                                    <div class="col-sm-9">
+                                        <label class="col-sm-2 col-form-label" for="department">Department</label>
+                                        <input type="hidden" id="selected_department" name="selected_department"
+                                            value="">
+                                        <input type="text" list="department" class="form-control" name="department"
+                                            id="department" placeholder="Department name">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="col-sm-2 col-form-label">Estado</label>
+                                        <select class="form-select" id="state">
+                                            <option selected>Opciones</option>
+                                            <option value="1">Activo</option>
+                                            <option value="0">Inactivo</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </fieldset>
                         </form>
@@ -100,7 +104,8 @@
                     <div class="modal-footer">
                         <!-- Botones de aciiones -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="btnAgregar" type="button" class="btn btn-primary" onclick="save()">Guardar</button>
+                        <button name="btnAgregar" type="button" class="btn btn-primary"
+                            onclick="save()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -112,19 +117,19 @@
         <table class="table table-hover">
             <!-- Cabezera de la tabla -->
             <thead class="table-dark">
-              <tr>
-                <th>CODE</th>
-                <th>NAME</th>
-                <th>DEPARTMENT</th>
-                <th>STATE</th>
-                <th colspan="3" style="text-align: center;">ACTIONS</th>
-            </tr>
-        </thead>
-        <!-- Cuerpo de la tabla -->
-        <tbody id="resultData" style="align-items: center;">
+                <tr>
+                    <th>CODE</th>
+                    <th>NAME</th>
+                    <th>DEPARTMENT</th>
+                    <th>STATE</th>
+                    <th colspan="3" style="text-align: center;">ACTIONS</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla -->
+            <tbody id="resultData" style="align-items: center;">
             </tbody>
-          </table>
-          
+        </table>
+
         <!-- Button modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Nuevo

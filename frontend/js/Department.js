@@ -16,7 +16,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/department',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -51,7 +51,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/department' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");

@@ -1,8 +1,8 @@
 //Función para guardar datos
 function save() {
     try {
-        var selectedDepartment = parseInt($("#selected_departament").val());
-        if (inNaN(selectedDepartment) || selectedDepartment == null) {
+        var selectedDepartment = parseInt($("#selected_department").val());
+        if (isNaN(selectedDepartment) || selectedDepartment == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -16,7 +16,7 @@ function save() {
             url: 'http://localhost:7033/security/v1/api/city',
             method: 'POST',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (data) {
                 alert("Guardado");
@@ -35,7 +35,7 @@ function save() {
 //Función para actualizar datos
 function update() {
     try {
-        var selectedDepartment = parseInt($("#selected_departament").val());
+        var selectedDepartment = parseInt($("#selected_department").val());
         if (inNaN(selectedDepartment) || selectedDepartment == null) {
             console.error("Error con ciudad.");
             return;
@@ -51,7 +51,7 @@ function update() {
             url: 'http://localhost:7033/security/v1/api/city/' + id,
             method: 'PUT',
             dataType: 'json',
-            contentType: 'aplication/json',
+            contentType: 'application/json',
             data: jsonData,
             success: function (result) {
                 alert("Actualizado");
@@ -136,7 +136,7 @@ function loadData() {
                     `<tr>
                     <td>${item.code}</td>
                     <td>${item.name}</td>
-                    <td>${item.department.name} (${item.country.name})</td>
+                    <td>${item.department.name} (${item.department.country.name})</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
                     <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
@@ -167,19 +167,19 @@ function loadDepartment() {
         dataType: 'json',
         success: function (response) {
             if (response.status && Array.isArray(response.data)) {
-                var depa = response.data.map(function (depart) {
+                var depa = response.data.map(function (department) {
                     return {
-                        label: depart.name,
-                        value: depart.id
+                        label: department.name,
+                        value: department.id
                     };
                 });
                 $('#department').autocomplete({
                     source: function (request, response) {
                         var results = $.ui.autocomplete.filter(depa, request.term);
-                        if (!result.length) {
+                        if (!results.length) {
                             results = [{ label: 'No hay datos', value: null }];
                         }
-                        respose(results);
+                        response(results);
                     },
                     select: function (even, ui) {
                         $('#selected_department').val(ui.item.value);
