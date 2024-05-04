@@ -36,7 +36,7 @@ function save() {
 function update() {
     try {
         var selectedDepartment = parseInt($("#selected_department").val());
-        if (inNaN(selectedDepartment) || selectedDepartment == null) {
+        if (isNaN(selectedDepartment) || selectedDepartment == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -169,18 +169,12 @@ function loadDepartment() {
             if (response.status && Array.isArray(response.data)) {
                 var depa = response.data.map(function (department) {
                     return {
-                        label: department.name,
+                        label: `${department.name} (${department.country.name})`,
                         value: department.id
                     };
                 });
                 $('#department').autocomplete({
-                    source: function (request, response) {
-                        var results = $.ui.autocomplete.filter(depa, request.term);
-                        if (!results.length) {
-                            results = [{ label: 'No hay datos', value: null }];
-                        }
-                        response(results);
-                    },
+                    source: depa,
                     select: function (even, ui) {
                         $('#selected_department').val(ui.item.value);
                         $('#department').val(ui.item.label);

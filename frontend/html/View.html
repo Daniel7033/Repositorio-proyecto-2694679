@@ -65,8 +65,9 @@
                 <div class="modal-content">
                     <!-- Cabeza del modal -->
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearData()"></button>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">View register</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="clearData()"></button>
                     </div>
                     <!-- Cuerpo del modal -->
                     <div class="modal-body">
@@ -74,6 +75,13 @@
                         <form action="row needs-validation" novalidate>
                             <fieldset>
                                 <div>
+                                    <div class="col-sm-9">
+                                        <label class="col-sm-2 col-form-label" for="module">Module</label>
+                                        <input type="hidden" id="selected_module" name="selected_module"
+                                            value="">
+                                        <input type="text" list="module" class="form-control" name="module"
+                                            id="module" placeholder="Module name">
+                                    </div>
                                     <div class="col-md-12">
                                         <label class="col-sm-2 col-form-label">Name</label>
                                         <input type="hidden" id="id" name="id">
@@ -85,12 +93,13 @@
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">/</span>
                                             <input type="text" class="form-control" id="route" name="route"
-                                            placeholder="Route">
+                                                placeholder="Route">
                                         </div>
-                                    </div><div class="col-md-12">
+                                    </div>
+                                    <div class="col-md-12">
                                         <label class="col-sm-2 col-form-label">Description</label>
-                                        <textarea class="form-control" id="description" name="description" 
-                                        rows="3" placeholder="Description..."></textarea>
+                                        <textarea class="form-control" id="description" name="description" rows="3"
+                                            placeholder="Description..."></textarea>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="col-sm-2 col-form-label">Estado</label>
@@ -108,7 +117,8 @@
                     <div class="modal-footer">
                         <!-- Botones de aciiones -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="btnAgregar" type="button" class="btn btn-primary" onclick="save()">Guardar</button>
+                        <button name="btnAgregar" type="button" class="btn btn-primary"
+                            onclick="save()">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -121,6 +131,7 @@
             <!-- Cabezera de la tabla -->
             <thead class="table-dark">
                 <tr>
+                    <th>MODULE</th>
                     <th>NAME</th>
                     <th>ROUTE</th>
                     <th>DESCRIPTION</th>
@@ -144,4 +155,5 @@
 </html>
 <script>
     loadData();
+    autocomplete();
 </script>

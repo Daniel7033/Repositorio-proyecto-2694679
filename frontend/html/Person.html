@@ -66,8 +66,9 @@
                 <div class="modal-content">
                     <!-- Cabeza del modal -->
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearData()"></button>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Person register</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="clearData()"></button>
                     </div>
                     <!-- Cuerpo del modal -->
                     <div class="modal-body">
@@ -98,49 +99,55 @@
                                                 placeholder="Last name" aria-label="Last name">
                                         </div>
                                     </div>
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label">Date of birth</label>
-                                            <div class="col">
-                                                <input type="date" class="form-control" id="dateOfBitrth"
-                                                    name="dateOfBitrth">
-                                            </div>
-                                            <div class="col">
-                                                <select class="form-select" name="gender" id="gender">
-                                                    <option>Gender</option>
-                                                </select>
-                                            </div>
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label" for="dateOfBitrth">Date of birth</label>
+                                        <div class="col">
+                                            <input type="date" class="form-control" id="dateOfBitrth"
+                                                name="dateOfBitrth">
                                         </div>
+                                        <div class="col">
+                                            <select class="form-select" list="gender" name="gender" id="gender">
+                                                <option>Gender</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="input-group mb-3">
                                         <label class="col-sm-2 col-form-label">Email</label>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control"
+                                            <input type="email" class="form-control"
                                                 aria-label="Text input with dropdown button" id="email" name="email"
                                                 placeholder="Email">
-                                            <select class="form-select" name="mail">
-                                                <option selected>@example.com</option>
+                                            <select class="form-select" list="mail" id="mail" name="mail">
+                                                <option selected invalide>@example.com</option>
+                                                <option value="@gmail.com">@gmail.com</option>
+                                                <option value="@outlook.com">@outlook.com</option>
+                                                <option value="@hotmail.com">@hotmail.com</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label class="col-sm-2 col-form-label">Phone</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="0132456789">
+                                        <input type="text" class="form-control" id="phone" name="phone"
+                                            placeholder="0132456789">
                                     </div>
                                     <div class="col-sm-9">
                                         <label class="col-sm-2 col-form-label" for="city">City</label>
                                         <input type="hidden" id="selected_city" name="selected_city">
-                                        <input type="text" list="city" class="form-control" name="city"
-                                            id="city" placeholder="Neiva...">
+                                        <input type="text" list="city" class="form-control" name="city" id="city"
+                                            placeholder="Neiva...">
                                     </div>
                                     <div class="input-group mb-3">
                                         <label class="col-sm-2 col-form-label">Address</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-control" id="address" name="address"></select>
-                                            <input type="number" class="form-control row-sm-2" name="numeral" id="numeral"
-                                                value="" required placeholder="Enter #">
+                                            <select class="form-control" list="address" id="address" name="address">
+                                                <option selected>Nomenclatura</option>
+                                            </select>
+                                            <input type="number" class="form-control row-sm-2" name="numeral"
+                                                id="numeral" value="" required placeholder="Enter #">
                                             <input type="text" class="form-control" name="numeral2" id="numeral2"
                                                 value="" required placeholder="Enter #">
-                                            <textarea class="form-control" name="description" id="description"
-                                                value="" required rows="1" placeholder="Description"></textarea>
+                                            <textarea class="form-control" name="description" id="description" value=""
+                                                required rows="1" placeholder="Description"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -159,7 +166,8 @@
                     <div class="modal-footer">
                         <!-- Botones de aciiones -->
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button name="btnArgegar" type="button" class="btn btn-primary" onclick="save()">Guardar</button>
+                        <button name="btnAgregar" type="button" class="btn btn-primary"
+                            onclick="save()">Guardar</button>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ function save() {
             'document': parseInt($('#document').val()),
             'firstName': $('#firstName').val(),
             'lastName': $('#lastName').val(),
-            'dateOfBitrth': ($('#dateOfBitrth').val()),
+            'dateOfBitrth': parseInt($('#dateOfBitrth').val()),
             'gender': $('#gender').val(),
             'email': $('#email').val() + $('#mail').val(),
             'phone': parseInt($('#phone').val()),
@@ -102,7 +102,7 @@ function save() {
 function update() {
     try {
         var selectedCity = parseInt($("#selected_city").val());
-        if (inNaN(selectedCity) || selectedCity == null) {
+        if (isNaN(selectedCity) || selectedCity == null) {
             console.error("Error con ciudad.");
             return;
         }
@@ -231,7 +231,7 @@ function loadData() {
                     <td>${item.dateOfBitrth}</td>
                     <td>${item.email}</td>
                     <td>${item.phone}</td>
-                    <td>${item.address}. ${item.city.name}</td>
+                    <td>${item.address}. ${item.city.name} (${item.city.department.name})</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
                     <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='findById(${item.id})'><img src='../assets/icon/pencil-square.svg'></button></td>
                     <td><button class="btn btn-danger" onclick='dropById(${item.id})'><img src='../assets/icon/trash3-fill.svg'></button></td>
@@ -264,7 +264,7 @@ function loadCity() {
             if (response.status && Array.isArray(response.data)) {
                 var cities = response.data.map(function (city) {
                     return {
-                        label: city.name,
+                        label: `${city.name} (${city.department.country.name})`,
                         value: city.id
                     };
                 });

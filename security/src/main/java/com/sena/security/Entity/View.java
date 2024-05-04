@@ -19,7 +19,7 @@ public class View extends ABaseEntity{
     @Column(name = "description", length = 10000, nullable = true)
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 

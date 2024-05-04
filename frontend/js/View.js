@@ -1,10 +1,16 @@
 //Función para guardar datos
 function save() {
     try {
+        var selectedModule = parseInt($("#selected_module").val());
+        if (isNaN(selectedModule) || selectedModule == null) {
+            console.error("Error con ciudad.");
+            return;
+        }
         var data = {
             'name': $('#name').val(),
             'route': $('#route').val(),
             'description': $('#description').val(),
+            'module': { 'id': selectedModule },
             'state': parseInt($('#state').val())
         };
         var jsonData = JSON.stringify(data);
@@ -31,10 +37,16 @@ function save() {
 //Función para actualizar datos
 function update() {
     try {
+        var selectedModule = parseInt($("#selected_module").val());
+        if (isNaN(selectedModule) || selectedModule == null) {
+            console.error("Error con ciudad.");
+            return;
+        }
         var data = {
             'name': $('#name').val(),
             'route': $('#route').val(),
             'description': $('#description').val(),
+            'module': { 'id': selectedModule },
             'state': parseInt($('#state').val())
         };
         var id = parseInt($('#id').val());
@@ -74,6 +86,7 @@ function findById(id) {
             $('#name').val(data.data.name);
             $('#route').val(data.data.route);
             $('#description').val(data.data.description);
+            $('#module').val(data.data.module.name);
             $('#state').val(data.data.state === true ? 1 : 0);
 
             var btnAgregar = $('button[name="btnAgregar"]');
@@ -113,6 +126,7 @@ function clearData() {
     $('#name').val('');
     $('#route').val('');
     $('#description').val('');
+    $('#module').val('');
     $('#state').val('');
 }
 
@@ -129,7 +143,8 @@ function loadData() {
                 data.forEach(function (item) {
                     html +=
                         `<tr>
-                    <td>${item.name}</td>
+                        <td>${item.module.name}</td>
+                        <td>${item.name}</td>
                     <td>/${item.route}</td>
                     <td>${item.description}</td>
                     <td>${item.state === true ? '<img src="../assets/icon/circle-true.png">' : '<img src="../assets/icon/circle-false.png">'}</td>
@@ -142,6 +157,51 @@ function loadData() {
                 console.error('Error.');
             }
             $('#resultData').html(html);
+        },
+        error: function (error) {
+            console.error('Error: ', error);
+        }
+    });
+}
+
+//Función para retornar datos del autocomplete
+function autocomplete() {
+    return loadModule();
+}
+
+//Autocomplete 
+function loadModule() {
+    $.ajax({
+        url: 'http://localhost:7033/security/v1/api/module',
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            if (response.status && Array.isArray(response.data)) {
+                var modules = response.data.map(function (module) {
+                    return {
+                        label: module.name,
+                        value: module.id
+                    };
+                });
+                $('#module').autocomplete({
+                    source: function (request, response) {
+                        var results = $.ui.autocomplete.filter(modules, request.term);
+                        if (!results.length) {
+                            results = [{ label: 'No hay datos', value: null }];
+                        }
+                        response(results);
+                    },
+                    select: function (even, ui) {
+                        $('#selected_module').val(ui.item.value);
+                        $('#module').val(ui.item.label);
+                        console.log('ID seleccionado', ui.item.value);
+                        return false;
+                    }
+                });
+            } else {
+                console.error('Error.');
+
+            }
         },
         error: function (error) {
             console.error('Error: ', error);

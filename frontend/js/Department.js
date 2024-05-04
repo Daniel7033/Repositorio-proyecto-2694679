@@ -48,7 +48,7 @@ function update() {
         var id = parseInt($('#id').val());
         var jsonData = JSON.stringify(data);
         $.ajax({
-            url: 'http://localhost:7033/security/v1/api/department' + id,
+            url: 'http://localhost:7033/security/v1/api/department/' + id,
             method: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
@@ -74,7 +74,7 @@ function update() {
 //Función para buscar datos por "id"
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:7033/security/v1/api/department' + id,
+        url: 'http://localhost:7033/security/v1/api/department/' + id,
         method: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -96,7 +96,7 @@ function findById(id) {
 //Función para eliminar datos de manera permanente
 function dropById(id) {
     $.ajax({
-        url: 'http://localhost:7033/security/v1/api/department' + id,
+        url: 'http://localhost:7033/security/v1/api/department/' + id,
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
