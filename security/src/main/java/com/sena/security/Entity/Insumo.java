@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "insumo")
 public class Insumo extends ABaseEntity{
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = true)
     private String code;
     @Column(name = "name", nullable = false)
     private String name;

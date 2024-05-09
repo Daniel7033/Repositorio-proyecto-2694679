@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "factura_detalle")
 public class FacturaDetalle extends ABaseEntity {
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = true)
     private String code;
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;

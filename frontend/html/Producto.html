@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Librerias -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Enlaces -->
+    <!-- Script -->
+    <script src='../js/Producto.js'></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <title>Producto</title>
+</head>
+
+<body>
+    <div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <!-- Cabeza del modal -->
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Producto register</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="clearData()"></button>
+                    </div>
+                    <!-- Cuerpo del modal -->
+                    <div class="modal-body">
+                        <!-- Formulario -->
+                        <form action="row needs-validation" novalidate>
+                            <fieldset>
+                                <div>
+                                    <div class="row g-3">
+                                        <div class="col-sm-7">
+                                            <label class="col-form-label">Name</label>
+                                            <input type="hidden" class="form-control" name="id" id="id">
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                placeholder="Nombre del insumo">
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="col-form-label">Precio</label>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">$</span>
+                                                <input type="text" class="form-control" name="precio" id="precio" value="0">
+                                                <span class="input-group-text">.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <label class="col-form-label">Descuento del producto</label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" min="0" max="100" value="0" class="form-control" name="descuento" id="descuento">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="col-form-label">Iva del producto</label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" min="0" max="100" value="0" class="form-control" name="iva" id="iva">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-12">
+                                            <label class="col-sm-2 col-form-label">Insumo</label>
+                                            <input type="hidden" id="selected_insumo" name="selected_insumo">
+                                            <input type="text" list="insumo" class="form-control" name="insumo"
+                                                id="insumo" placeholder="Nombre del producto">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label for="" class="col-form-label">Short description</label>
+                                        <textarea class="form-control" name="shortDescription" id="shortDescription"
+                                            value="" required rows="2" minlength="0" maxlength="500" placeholder="Short description..."></textarea>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label for="" class="col-form-label">Long description</label>
+                                        <textarea class="form-control" name="longDescription" id="longDescription" value=""
+                                            rows="3" minlength="0" maxlength="2000" placeholder="Long description (optional)..."></textarea>
+                                    </div>
+                                </div>
+                                <!-- Seleccionador del estado (activo o inactivo) del formulario -->
+                                <div class="col-sm-12">
+                                    <label>Estado</label>
+                                    <select class="form-select" id="state">
+                                        <option selected>--Seleccione--</option>
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <!-- Final del formulario -->
+                    </div>
+                    <div class="modal-footer">
+                        <!-- Botones de aciiones -->
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button name="btnAgregar" type="button" class="btn btn-primary"
+                            onclick="save()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Final Modal -->
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>CODE</th>
+                    <!-- <th>INSUMO</th> -->
+                    <th>NAME</th>
+                    <th>S. DESCRIPTION</th>
+                    <th>L. DESCRIPTION</th>
+                    <th>PRECIO UNT.</th>
+                    <th>DESCUENTO</th>
+                    <th>IVA</th>
+                    <th>COSTO</th>
+                    <th>STATE</th>
+                    <th colspan="3">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="resultData"></tbody>
+        </table>
+    </div>
+    <!-- Button modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Nuevo
+    </button>
+</body>
+
+</html>
+<script>
+    loadData();
+    autocomplete();
+</script>

@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "inventario_detalle")
 public class InventarioDetalle extends ABaseEntity{
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = true)
     private String code;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "insumo_id", nullable = true)

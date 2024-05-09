@@ -34,7 +34,7 @@
                 <div class="modal-content">
                     <!-- Cabeza del modal -->
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Person register</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Factura</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                             onclick="clearData()"></button>
                     </div>
@@ -44,43 +44,56 @@
                         <form action="row needs-validation" novalidate>
                             <fieldset>
                                 <div>
-                                    <legend>Factura</legend>
                                     <!-- Formulario para guardar los datos en factura -->
                                     <div class="border-bottom border-secondary">
-
-                                    </div><br>
-                                    <!-- Formulario para añadir detalles a la factura -->
-                                    <div class="border-success">
-                                        <h4>Detalles de factura</h4>
-                                        <!-- Producto y cantidad -->
-                                        <div>
-                                            <div class="input-group mb-3">
-                                                <!-- Nombre del producto -->
-                                                <label class="col-sm-2 col-form-label">Producto</label>
-                                                <div class="row g-2">
-                                                    <div class="col-5">
-                                                        <label for="producto"></label>
-                                                        <input type="hidden" id="selected_producto"
-                                                            name="selected_producto">
-                                                        <input type="text" list="producto" class="form-control"
-                                                            name="producto" id="producto"
-                                                            placeholder="Nombre del producto">
-                                                    </div>
-                                                    <div class="col-5">
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text">$</span>
-                                                            <input type="text" class="form-control"
-                                                                aria-label="Amount (to the nearest dollar)">
-                                                            <span class="input-group-text">.00</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input type="text" class="form-control" id="cantidad"
-                                                            name="cantidad" value="1">
-                                                    </div>
+                                        <div class="row g-3">
+                                            <div class="col-7">
+                                                <label class="col-sm-12 col-form-label" for="user">Nombre cliente</label>
+                                                <input type="hidden" name="id" id="id">
+                                                <input type="hidden" id="selected_user" name="selected_user">
+                                                <input type="text" list="user" class="form-control" name="user" id="user"
+                                                placeholder="Nombre del producto">
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="col-sm-12 col-form-label">Pago cliente</label>
+                                                <div class="input-group mb">
+                                                    <span class="input-group-text">$</span>
+                                                    <input type="number" class="form-control" name="pagoCliente" id="pagoCliente"
+                                                    placeholder="Pago">
+                                                    <span class="input-group-text">.00</span>
                                                 </div>
                                             </div>
+                                        </div><br>
+                                    </div>
+                                    <div class="row g-3">
+                                            <div class="col-6">
+                                                <label class="col-form-label">Fecha creación</label>
+                                                <input type="hidden" name="id" id="id">
+                                                <input type="date" class="form-control" name="dateCreated" id="dateCreated">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="col-12 col-form-label">Unidades de productos</label>
+                                                <input type="number" class="form-control" name="cantidad" id="cantidad"
+                                                    value="1" placeholder="Total de cantidad de productos">
+                                            </div>
                                         </div>
+                                    <div class="row g-4">
+                                            <div class="col-6">
+                                                <label for="descuento">Descuento</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="descuento"
+                                                        name="descuento" min="0" max="100" value="0">
+                                                    <span class="input-group-text">%</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="iva">Iva</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="iva" name="iva"
+                                                        min="0" max="100" value="0">
+                                                    <span class="input-group-text">%</span>
+                                                </div>
+                                            </div>
                                     </div>
                                     <!-- Seleccionador del estado (activo o inactivo) del formulario -->
                                     <div class="col-sm-12">
@@ -107,6 +120,27 @@
         </div>
         <!-- Final Modal -->
     </div>
+    <div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>CODE</th>
+                    <th>FECHA CREACIÓN</th>
+                    <th>CLIENTE</th>
+                    <th>UNIDADES</th>
+                    <th>IVA</th>
+                    <th>DESCUENTO</th>
+                    <th>PAGO TOTAL</th>
+                    <th>PAGO CLIENTE</th>
+                    <th>CAMBIO</th>
+                    <th>STATE</th>
+                    <th colspan="3">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="resultData">
+            </tbody>
+        </table>
+    </div>
     <!-- Button modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Nuevo
@@ -114,3 +148,6 @@
 </body>
 
 </html>
+<script>
+    loadData();
+</script>

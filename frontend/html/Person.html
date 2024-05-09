@@ -78,18 +78,18 @@
                                 <div>
                                     <div class="row">
                                         <label>Document Person</label>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-2">
                                             <select class="form-select" name="typeDocument" id="typeDocument">
                                                 <option selected>Type document</option>
                                             </select>
                                             <input type="hidden" id="id" name="id">
-                                            <input type="text" class="form-control" id="document" name="document"
-                                                aria-label="Text input with dropdown button"
+                                            <input type="text" class="form-control row-sm-2" id="document"
+                                                name="document" aria-label="Text input with dropdown button"
                                                 placeholder="Number document">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Firstname and lastname</label>
+                                    <div class="row g-3">
+                                        <label class="col-form-label">Firstname and lastname</label>
                                         <div class="col">
                                             <input type="text" class="form-control" id="firstName" name="firstName"
                                                 placeholder="First name" aria-label="First name">
@@ -99,44 +99,44 @@
                                                 placeholder="Last name" aria-label="Last name">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label" for="dateOfBitrth">Date of birth</label>
+                                    <div class="row g-4">
                                         <div class="col">
+                                            <label class="col-form-label" for="dateOfBitrth">Date of birth</label>
                                             <input type="date" class="form-control" id="dateOfBitrth"
                                                 name="dateOfBitrth">
                                         </div>
                                         <div class="col">
+                                            <label class="col-form-label">Género</label>
                                             <select class="form-select" list="gender" name="gender" id="gender">
                                                 <option>Gender</option>
                                             </select>
                                         </div>
                                     </div>
+                                    
+                                    <label class="col-sm-2 col-form-label">Email</label>
                                     <div class="input-group mb-3">
-                                        <label class="col-sm-2 col-form-label">Email</label>
-                                        <div class="input-group mb-3">
-                                            <input type="email" class="form-control"
-                                                aria-label="Text input with dropdown button" id="email" name="email"
-                                                placeholder="Email">
-                                            <select class="form-select" list="mail" id="mail" name="mail">
-                                                <option selected invalide>@example.com</option>
-                                                <option value="@gmail.com">@gmail.com</option>
-                                                <option value="@outlook.com">@outlook.com</option>
-                                                <option value="@hotmail.com">@hotmail.com</option>
-                                            </select>
-                                        </div>
+                                        <input type="email" class="form-control"
+                                            aria-label="Text input with dropdown button" id="email" name="email"
+                                            placeholder="Email">
+                                        <select class="form-select" list="mail" id="mail" name="mail">
+                                            <option selected invalide>@example.com</option>
+                                            <option value="@gmail.com">@gmail.com</option>
+                                            <option value="@outlook.com">@outlook.com</option>
+                                            <option value="@hotmail.com">@hotmail.com</option>
+                                        </select>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-12">
                                         <label class="col-sm-2 col-form-label">Phone</label>
                                         <input type="text" class="form-control" id="phone" name="phone"
                                             placeholder="0132456789">
                                     </div>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-12">
                                         <label class="col-sm-2 col-form-label" for="city">City</label>
                                         <input type="hidden" id="selected_city" name="selected_city">
                                         <input type="text" list="city" class="form-control" name="city" id="city"
                                             placeholder="Neiva...">
                                     </div>
-                                    <div class="input-group mb-3">
+                                    <div>
                                         <label class="col-sm-2 col-form-label">Address</label>
                                         <div class="input-group mb-3">
                                             <select class="form-control" list="address" id="address" name="address">
@@ -150,7 +150,7 @@
                                                 required rows="1" placeholder="Description"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-12">
                                         <label class="col-sm-2 col-form-label">Estado</label>
                                         <select class="form-select" id="state">
                                             <option>Opciones</option>
@@ -189,11 +189,11 @@
                     <th>PHONE</th>
                     <th>ADDRESS</th>
                     <th>STATE</th>
-                    <th colspan="3" style="text-align: center;">ACTIONS</th>
+                    <th colspan="3">ACTIONS</th>
                 </tr>
             </thead>
             <!-- Cuerpo de la tabla -->
-            <tbody id="resultData" style="align-items: center;">
+            <tbody id="resultData" style="text-align: center;">
             </tbody>
         </table>
 

@@ -7,17 +7,17 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "producto")
 public class Producto extends ABaseEntity{
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = true)
     private String code;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "short_description", length = 500, nullable = false)
     private String shortDescription;
-    @Column(name = "long_description", length = 2000, nullable = false)
+    @Column(name = "long_description", length = 2000, nullable = true)
     private String longDescription;
     @Column(name = "precio", nullable = false)
     private Double precio;
-    @Column(name = "costo_precio", nullable = false)
+    @Column(name = "costo_precio", nullable = true)
     private Double costoPrecio;
     @Column(name = "descuento", nullable = false)
     private Double descuento;

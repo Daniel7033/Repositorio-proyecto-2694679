@@ -39,45 +39,41 @@ public class CountryService extends ABaseService<Country> implements ICountrySer
         }
     }
 //  Pendiente: Actualización del código automático de Country y revisar la efectividad de GeneratedCode {
-        // @Override
-        // public void update(Long id, Country entity) throws Exception{
-        //     System.out.println("id " + id);
-        //     Optional<Country> op = getRepository().findById(id);
-        //     if (!op.isPresent()) {
-        //         throw new Exception("Registro no encontrado");
-        //     } 
-        //     Country existent = op.get();
-        //     if (!existent.getName().equals(entity.getId())) {
-        //         String newCode = GeneratedCode(existent.getId(), existent.getName());
-        //         existent.setCode(newCode);
-        //     }
-        //     String[] ingnorePropierties = {"id", "createdAt", "deletedAt", "createdBy", "deletedBy", "code"};
-        //     BeanUtils.copyProperties(entity, existent, ingnorePropierties);
-        //     existent.setUpdatedAt(LocalDateTime.now());
-        //     existent.setUpdatedBy((long)id);
-        //     getRepository().save(existent);
-        // }
+        @Override
+        public void update(Long id, Country entity) throws Exception{
+            System.out.println("id " + id);
+            Optional<Country> op = getRepository().findById(id);
+            if (!op.isPresent()) {
+                throw new Exception("Registro no encontrado");
+            } 
+            Country existent = op.get();
+            if (!existent.getName().equals(entity.getName())) {
+                String newCode = GeneratedCode(existent.getId(), existent.getName());
+                existent.setCode(newCode);
+            }
+            String[] ingnorePropierties = {"id", "createdAt", "deletedAt", "createdBy", "deletedBy", "code"};
+            BeanUtils.copyProperties(entity, existent, ingnorePropierties);
+            existent.setUpdatedAt(LocalDateTime.now());
+            existent.setUpdatedBy((long)id);
+            getRepository().save(existent);
+        }
         
-        // @Override
-        // public String GeneratedCode(Long id, String name) throws Exception{
-        //     Optional<Country> op = getRepository().findById(id);
-        //     if (!op.isPresent()) {
-        //         Country exist = op.get();
-        //         String digitos = exist.getName();
-                
-        //         if (name.length() >= 3) {
-        //             int day = LocalDateTime.now().getDayOfMonth();
-        //             String pd = digitos.substring(0, Math.min(digitos.length(), 3));
-        //             String ud = digitos.substring(Math.max(0, digitos.length() - 3));
-        //             String code = pd.toUpperCase() + day + ud.toUpperCase();
-        //             return code;
+        @Override
+        public String GeneratedCode(Long id, String name) throws Exception{
+            Optional<Country> op = getRepository().findById(id);
+            Country ex = op.get();
+            name = ex.getName();
+                if (name.length() >= 3) {
+                    int day = LocalDateTime.now().getDayOfMonth();
+                    String pd = name.substring(0, Math.min(name.length(), 3));
+                    String ud = name.substring(Math.max(0, name.length() - 3));
+                    String code = pd.toUpperCase() + day + ud.toUpperCase();
+                    return code;
                     
-        //         } else {
-        //             throw new IllegalArgumentException("Error al generar el código..");
-        //         }
-        //     } else {
-        //         throw new IllegalArgumentException("Error al generar el código.");
-        //     }
-        // }
+                } else {
+                    throw new IllegalArgumentException("Error al generar el código.");
+                }
+                
+        }
 //  }
 }
