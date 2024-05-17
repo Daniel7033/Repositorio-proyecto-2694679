@@ -139,3 +139,56 @@ function loadData() {
         }
     });
 }
+
+//Metodo de filtrado
+function filtrar(){ //filtrar todos los datos
+    var criteria = {};
+    var inputs = $('#data input');
+    inputs.each(function() {
+        var key = $(this).data('column');
+        var value = $(this).val();
+        if (value) {
+            criteria[key] = value;
+        }
+    });
+    $.ajax({
+        url: 'http://localhost:7033/security/v1/api/country/filtrar/',
+        method: "GET",
+        data: criteria,
+        dataType: 'json',
+        success: function (response) {
+            var html = '';
+            var data = response.data;
+            if (Array.isArray(data)) {
+                data.forEach(function (item) {
+                    html += loadData(item);
+                });
+            }
+            $('#resultData').html(html);
+        },
+        error: function (error) {
+            console.error('Error: ', error);
+        }
+    });
+}
+function filtrarEstado(){ //filtrar por estado
+    var dato = ($('#state').val());
+    $.ajax({
+        url: 'http://localhost:7033/security/v1/api/country/filtrar/' + dato,
+        method: "GET",
+        dataType: 'json',
+        success: function (response) {
+            var html = '';
+            var data = response.data;
+            if (Array.isArray(data)) {
+                data.forEach(function (item) {
+                    html += loadData(item);
+                });
+            }
+            $('#resultData').html(html);
+        },
+        error: function (error) {
+            console.error('Error: ', error);
+        }
+    });
+}
